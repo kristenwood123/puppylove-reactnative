@@ -1,7 +1,7 @@
 const data = [
   {
     id: 'eirou5jds',
-    name: 'Max',
+    name: 'Max!!',
     breed: 'Husky',
     image: require('../images/dog3.jpg'),
     percent: 50
