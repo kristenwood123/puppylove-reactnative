@@ -13,7 +13,7 @@ const Card = (props) => {
             />
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.breed}>{breed}</Text>
-          <Button
+          {/* <Button
             containerStyle={{
               width: 200,
               height: 200
@@ -28,14 +28,14 @@ const Card = (props) => {
               name='times'
               type='font-awesome'
               color='black'
-              />
+              /> */}
       </View>
   )
 }
 
 const styles = StyleSheet.create({
   card: {
-    width: '95%',
+    width: '90%',
     height: '85%',
     borderRadius: 10,
     shadowColor: '#000',
