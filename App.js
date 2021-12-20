@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, Text, Pressable } from 'react-native'
 import 'react-native-gesture-handler'
 import Animated, { 
@@ -17,15 +17,19 @@ import dogs  from './assets/data/dogs'
 import Card from './src/components/Card'
 import { useWindowDimensions } from 'react-native'
 
+const ROTATION = 60;
+
 const App = () => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [nextIndex, setNextIndex] = useState(currentIndex + 1)
+  const currentProfile = dogs[currentIndex]
+  const nextProfile = dogs[nextIndex]
+
   const { width: screenWidth } = useWindowDimensions()
+  const hiddenTranslateX = 2 * screenWidth;
+
   const translateX = useSharedValue(0)
-  const rotate = useDerivedValue(() => interpolate(
-    translateX.value, 
-    [0, screenWidth],
-    [0, 60]
-  ) + 'deg'
-  )
+  const rotate = useDerivedValue(() => interpolate(translateX.value, [0, hiddenTranslateX], [0, ROTATION]) + 'deg')
 
   const cardStyle = useAnimatedStyle(() => ({
     transform: [
@@ -37,6 +41,23 @@ const App = () => {
       }
   ],
   }));
+
+  const nextCardStyle = useAnimatedStyle(() => ({
+    transform: [
+      {
+        scale: interpolate(
+          translateX.value, 
+          [-hiddenTranslateX, 0, hiddenTranslateX], 
+          [1, 0.8, 1])
+      }
+  ],
+  opacity: interpolate(
+          translateX.value, 
+          [-hiddenTranslateX, 0, hiddenTranslateX], 
+          [1, 0.6, 1]
+      ),
+  }));
+
 
   const gestureHandler = useAnimatedGestureHandler({
     onStart: (_, context) => {
@@ -52,9 +73,15 @@ const App = () => {
 
   return (
     <View style={styles.pageContainer}>
+      <View style={styles.nextCardContainer}>
+        <Animated.View style={[styles.animatedCard, nextCardStyle]}>
+          <Card dog={nextProfile} />
+        </Animated.View>
+      </View>
+
       <PanGestureHandler onGestureEvent={gestureHandler}>
           <Animated.View style={[styles.animatedCard, cardStyle]}>
-            <Card dog={dogs[0]} />
+            <Card dog={currentProfile} />
           </Animated.View>
         </PanGestureHandler>
         <Pressable 
@@ -78,6 +105,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  nextCardContainer: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute'
   }
 })
 

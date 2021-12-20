@@ -51,7 +51,10 @@ const styles = StyleSheet.create({
   image: {
     width: '90%', 
     height: '70%',
-    padding: 10,
+    marginTop: 20,
+    marginBottom: 0,
+    marginLeft: 'auto',
+    marginRight: 'auto',
     borderRadius: 10
   },
   name: {
