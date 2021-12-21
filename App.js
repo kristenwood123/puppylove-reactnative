@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, Text, Pressable } from 'react-native'
 import 'react-native-gesture-handler'
 import Animated, { 
@@ -7,7 +7,8 @@ import Animated, {
   withSpring,
   useAnimatedGestureHandler,
   useDerivedValue,
-  interpolate
+  interpolate,
+  runOnJS
  } from 'react-native-reanimated'
  import { PanGestureHandler } from 'react-native-gesture-handler'
 
@@ -72,29 +73,40 @@ const App = () => {
         translateX.value = withSpring(0);
         return
       } 
-      translateX.value = withSpring(hiddenTranslateX * Math.sign(event.velocityX)
-      );
+      translateX.value = withSpring(
+        hiddenTranslateX * Math.sign(event.velocityX),
+        {},
+        () => runOnJS(setCurrentIndex)(currentIndex + 1)
+      )
     }
   })
 
+  useEffect(() => {
+    translateX.value = 0;
+    setNextIndex(currentIndex + 1)
+  }, [currentIndex])
+
   return (
     <View style={styles.pageContainer}>
-      <View style={styles.nextCardContainer}>
-        <Animated.View style={[styles.animatedCard, nextCardStyle]}>
-          <Card dog={nextProfile} />
-        </Animated.View>
-      </View>
-
+      {nextProfile && ( 
+        <View style={styles.nextCardContainer}>
+          <Animated.View style={[styles.animatedCard, nextCardStyle]}>
+            <Card dog={nextProfile} />
+          </Animated.View>
+        </View>
+      )}
+      {currentProfile && (
       <PanGestureHandler onGestureEvent={gestureHandler}>
           <Animated.View style={[styles.animatedCard, cardStyle]}>
             <Card dog={currentProfile} />
           </Animated.View>
         </PanGestureHandler>
-        <Pressable 
+      )}
+        {/* <Pressable 
           onPress={() => (sharedValue.value = withSpring(Math.random()))}
           style={{position: 'absolute', top: 250}}>
           <Text>Change Value</Text>
-        </Pressable>
+        </Pressable> */}
     </View>
   )
 }
