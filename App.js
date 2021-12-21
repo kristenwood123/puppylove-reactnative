@@ -18,6 +18,7 @@ import Card from './src/components/Card'
 import { useWindowDimensions } from 'react-native'
 
 const ROTATION = 60;
+const SWIPE_VELOCITY = 800;t
 
 const App = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -66,8 +67,13 @@ const App = () => {
     onActive: (event, context) => {
       translateX.value = context.startX + event.translationX;
     },
-    onEnd: () => {
-      console.warn('Touch ended');
+    onEnd: (event) => {
+      if(Math.abs(event.velocityX) < SWIPE_VELOCITY) {
+        translateX.value = withSpring(0);
+        return
+      } 
+      translateX.value = withSpring(hiddenTranslateX * Math.sign(event.velocityX)
+      );
     }
   })
 
