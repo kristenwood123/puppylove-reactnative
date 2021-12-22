@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, Text, Pressable } from 'react-native'
+import { View, StyleSheet, Image } from 'react-native'
+import { Icon } from 'react-native-elements'
 import 'react-native-gesture-handler'
 import Animated, { 
   useAnimatedStyle, 
@@ -8,18 +9,20 @@ import Animated, {
   useAnimatedGestureHandler,
   useDerivedValue,
   interpolate,
-  runOnJS
+  runOnJS,
  } from 'react-native-reanimated'
  import { PanGestureHandler } from 'react-native-gesture-handler'
-
-// Data 
-import dogs  from './assets/data/dogs'
+ 
+ // Data 
+ import dogs  from './assets/data/dogs'
+ import Like  from './assets/images/LIKE.png'
+ import Dislike from './assets/images/nope.png'
 // Components
 import Card from './src/components/Card'
 import { useWindowDimensions } from 'react-native'
 
 const ROTATION = 60;
-const SWIPE_VELOCITY = 800;t
+const SWIPE_VELOCITY = 800;
 
 const App = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -60,6 +63,21 @@ const App = () => {
       ),
   }));
 
+  const likeStyle = useAnimatedStyle(() => ({
+      opacity: interpolate(
+          translateX.value, 
+          [0, hiddenTranslateX / 5], 
+          [0, 1]
+      ),
+  }))
+
+  const dislikeStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(
+          translateX.value, 
+          [0, -hiddenTranslateX / 5], 
+          [0, 1]
+    ),
+  }))
 
   const gestureHandler = useAnimatedGestureHandler({
     onStart: (_, context) => {
@@ -88,9 +106,11 @@ const App = () => {
 
   return (
     <View style={styles.pageContainer}>
+      <Icon style={styles.like} name='heart' type='font-awesome' color='red' resizeMode='contain' />
       {nextProfile && ( 
         <View style={styles.nextCardContainer}>
           <Animated.View style={[styles.animatedCard, nextCardStyle]}>
+            
             <Card dog={nextProfile} />
           </Animated.View>
         </View>
@@ -98,6 +118,14 @@ const App = () => {
       {currentProfile && (
       <PanGestureHandler onGestureEvent={gestureHandler}>
           <Animated.View style={[styles.animatedCard, cardStyle]}>
+             <Animated.Image 
+                source={Like} 
+                style={[styles.like, {left: 10}, likeStyle]} 
+                resizeMode='contain' />
+             <Animated.Image 
+                source={Dislike} 
+                style={[styles.like, {right: 10}, dislikeStyle]} 
+                resizeMode='contain' />
             <Card dog={currentProfile} />
           </Animated.View>
         </PanGestureHandler>
@@ -113,13 +141,14 @@ const App = () => {
 
 const styles = StyleSheet.create({
    pageContainer: { 
-    width: '100%',
+    // width: '100%',
     justifyContent: 'center', 
     alignItems: 'center',
     flex: 1
   },
   animatedCard: {
     width: '100%',
+    height: '70%',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
@@ -129,7 +158,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute'
+  },
+  like: {
+    width: 150,
+    height: 100,
+    position: 'absolute',
+    top: 220,
+    zIndex: 10
   }
 })
 
 export default App
+
+// 3:08 change animated card??
