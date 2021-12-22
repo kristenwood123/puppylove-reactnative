@@ -1,29 +1,50 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import 'react-native-gesture-handler'
+import { NavigationContainer } from '@react-navigation/native'
 
  
  // Data 
- import dogs  from './assets/data/dogs'
+import dogs  from './assets/data/dogs'
 import AnimatedStack from '././src/components/AnimatedStack.js'
+import Card from './src/components/Card'
+import Home from './src/components/Home'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-const ROTATION = 60;
-const SWIPE_VELOCITY = 800;
+const Stack = createNativeStackNavigator()
 
+//3:34
 const App = () => {
+  const onSwipeLeft = dog => {
+    console.warn('swipe left', dog.name)
+  }
+
+  const onSwipeRight = dog => {
+    console.warn('swipe right', dog.name)
+  }
 
   return (
-    <View style={styles.pageContainer}>
-      <AnimatedStack data={dogs}
-      renderItem={(({ item }) => <Card user={item} /> )}
-      />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        {/* <View style={styles.pageContainer}> */}
+          {/* <Stack.Screen name='Puppy Love' component={Home}/> */}
+          <Stack.Screen name='Explore'>
+            {props => <AnimatedStack 
+              data={dogs}
+              renderItem={({ item }) => <Card dog={item} /> }
+              onSwipeLeft={onSwipeLeft}
+              onSwipeRight={onSwipeRight}
+              />}
+          </Stack.Screen>
+        {/* </View> */}
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
 const styles = StyleSheet.create({
    pageContainer: { 
-    // width: '100%',
+    width: '100%',
     justifyContent: 'center', 
     alignItems: 'center',
     flex: 1

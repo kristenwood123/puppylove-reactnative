@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, Image } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { Icon } from 'react-native-elements'
 import 'react-native-gesture-handler'
 import Animated, { 
@@ -14,16 +14,16 @@ import Animated, {
  import { PanGestureHandler } from 'react-native-gesture-handler'
  
  // Data 
- import Like  from './assets/images/LIKE.png'
- import Dislike from './assets/images/nope.png'
+ import Like  from '../../../assets/images/LIKE.png'
+ import Dislike from '../../../assets/images/nope.png'
 // Components
 import { useWindowDimensions } from 'react-native'
 
 const ROTATION = 60;
 const SWIPE_VELOCITY = 800;
 
-const AnimatedStack = (props) => {
-  const { data, renderItem} = props;
+const AnimatedStack = props => {
+  const { data, renderItem, onSwipeLeft, onSwipeRight } = props;
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [nextIndex, setNextIndex] = useState(currentIndex + 1)
@@ -36,6 +36,7 @@ const AnimatedStack = (props) => {
   const translateX = useSharedValue(0)
   const rotate = useDerivedValue(() => interpolate(translateX.value, [0, hiddenTranslateX], [0, ROTATION]) + 'deg')
 
+  // Card Styles
   const cardStyle = useAnimatedStyle(() => ({
     transform: [
       {
@@ -93,6 +94,8 @@ const AnimatedStack = (props) => {
           [1, 3])
       }]
   }))
+  // End Card Styles
+
 
   const gestureHandler = useAnimatedGestureHandler({
     onStart: (_, context) => {
@@ -120,13 +123,12 @@ const AnimatedStack = (props) => {
   }, [currentIndex])
 
   return (
-    <View style={styles.pageContainer}>
+    <View style={styles.root}>
       <Icon style={styles.like} name='heart' type='font-awesome' color='red' resizeMode='contain' />
       {nextProfile && ( 
         <View style={styles.nextCardContainer}>
           <Animated.View style={[styles.animatedCard, nextCardStyle]}>
-            
-            <Card dog={nextProfile} />
+            {renderItem({item: nextProfile})}
           </Animated.View>
         </View>
       )}
@@ -140,8 +142,9 @@ const AnimatedStack = (props) => {
              <Animated.Image 
                 source={Dislike} 
                 style={[styles.like, {right: 10}, dislikeStyle]} 
-                resizeMode='contain' />
-            <Card dog={currentProfile} />
+                resizeMode='contain' 
+                />
+            {renderItem({item: currentProfile})}
           </Animated.View>
         </PanGestureHandler>
       )}
@@ -150,8 +153,8 @@ const AnimatedStack = (props) => {
 }
 
 const styles = StyleSheet.create({
-   pageContainer: { 
-    // width: '100%',
+   root: { 
+    width: '100%',
     justifyContent: 'center', 
     alignItems: 'center',
     flex: 1
@@ -167,7 +170,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'absolute'
+
   },
   like: {
     width: 150,

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Text, Image, View, StyleSheet } from 'react-native'
-import { Icon, Button } from 'react-native-elements'
 
 const Card = (props) => {
   const { name, breed, image } = props.dog;
@@ -13,22 +12,6 @@ const Card = (props) => {
             />
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.breed}>{breed}</Text>
-          {/* <Button
-            containerStyle={{
-              width: 200,
-              height: 200
-            }}>
-            <Icon
-              name='heart'
-              type='font-awesome'
-              color='red'
-              />
-            </Button>
-            <Icon
-              name='times'
-              type='font-awesome'
-              color='black'
-              /> */}
       </View>
   )
 }
