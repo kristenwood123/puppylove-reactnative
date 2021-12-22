@@ -31,7 +31,7 @@ const App = () => {
             name='Puppy Love' 
             component={Home}
           />
-          {/* <Stack.Screen name='Explore'>
+          <Stack.Screen name='Explore'>
             {props => <AnimatedStack 
               {...props}
               data={dogs}
@@ -39,7 +39,7 @@ const App = () => {
               onSwipeLeft={onSwipeLeft}
               // onSwipeRight={onSwipeRight}
               />}
-            </Stack.Screen> */}
+            </Stack.Screen>
       </Stack.Navigator>
             {/* </View> */}
     </NavigationContainer>
