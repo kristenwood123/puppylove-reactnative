@@ -25,19 +25,23 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
         {/* <View style={styles.pageContainer}> */}
-          {/* <Stack.Screen name='Puppy Love' component={Home}/> */}
-          <Stack.Screen name='Explore'>
+      <Stack.Navigator>
+          <Stack.Screen 
+            name='Puppy Love' 
+            component={Home}
+          />
+          {/* <Stack.Screen name='Explore'>
             {props => <AnimatedStack 
+              {...props}
               data={dogs}
               renderItem={({ item }) => <Card dog={item} /> }
               onSwipeLeft={onSwipeLeft}
-              onSwipeRight={onSwipeRight}
+              // onSwipeRight={onSwipeRight}
               />}
-          </Stack.Screen>
-        {/* </View> */}
+            </Stack.Screen> */}
       </Stack.Navigator>
+            {/* </View> */}
     </NavigationContainer>
   )
 }

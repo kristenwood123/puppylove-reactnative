@@ -124,7 +124,6 @@ const AnimatedStack = props => {
 
   return (
     <View style={styles.root}>
-      <Icon style={styles.like} name='heart' type='font-awesome' color='red' resizeMode='contain' />
       {nextProfile && ( 
         <View style={styles.nextCardContainer}>
           <Animated.View style={[styles.animatedCard, nextCardStyle]}>
