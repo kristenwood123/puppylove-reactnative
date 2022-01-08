@@ -37,7 +37,6 @@ const App = () => {
           )}
         </Stack.Screen>
       </Stack.Navigator>
-      {/* </View> */}
     </NavigationContainer>
   );
 };
