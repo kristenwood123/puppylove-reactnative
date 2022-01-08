@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
   loginButton: {
     color: '#000',
     backgroundColor: 'white',
-    padding: 5
+    padding: 5,
+    textTransform: 'uppercase'
   }
 })
