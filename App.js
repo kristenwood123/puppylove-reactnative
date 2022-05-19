@@ -20,6 +20,7 @@ const App = () => {
 
   const onSwipeRight = (dog) => {
     console.warn("swipe right", dog.name);
+    console.log("swipre right", dog.name);
   };
 
   return (
@@ -33,6 +34,8 @@ const App = () => {
             <AnimatedStack
               {...props}
               data={dogs}
+              onSwipeLeft={onSwipeLeft}
+              onSwipeRight={onSwipeRight}
               renderItem={({ item }) => <Card dog={item} />}
             />
           )}
