@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, Button, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import logo from '../../../assets/images/logo.png'
 
 function Home({ navigation }) {

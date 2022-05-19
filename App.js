@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -9,10 +9,10 @@ import AnimatedStack from "././src/components/AnimatedStack.js";
 import Card from "./src/components/Card";
 import Home from "./src/components/Home";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import MatchesScreen from "./src/screens/MatchesScreen";
 
 const Stack = createNativeStackNavigator();
 
-//3:34
 const App = () => {
   const onSwipeLeft = (dog) => {
     console.warn("swipe left", dog.name);
@@ -24,19 +24,21 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      {/* <View style={styles.pageContainer}> */}
-      <Stack.Navigator>
-        <Stack.Screen name="Puppy Love" component={Home} />
-        <Stack.Screen name="Explore">
-          {(props) => (
-            <AnimatedStack
-              {...props}
-              data={dogs}
-              renderItem={({ item }) => <Card dog={item} />}
-            />
-          )}
-        </Stack.Screen>
-      </Stack.Navigator>
+      <View style={styles.pageContainer}>
+        <Stack.Navigator>
+          {/*<Stack.Screen name="matches" component={MatchesScreen} />*/}
+          <Stack.Screen name="Puppy Love" component={Home} />
+          <Stack.Screen name="Explore">
+            {(props) => (
+              <AnimatedStack
+                {...props}
+                data={dogs}
+                renderItem={({ item }) => <Card dog={item} />}
+              />
+            )}
+          </Stack.Screen>
+        </Stack.Navigator>
+      </View>
     </NavigationContainer>
   );
 };

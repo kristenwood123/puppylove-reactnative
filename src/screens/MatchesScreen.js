@@ -1,20 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
-import dogs from "./assets/data/dogs";
+import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
+import dogs from "../.././assets/data/dogs";
 
 const MatchesScreen = () => {
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.container}>
-        <Text
-          style={{ fontWeight: "bold", fontSize: 24, fontColor: "#cc63c7" }}
-        >
+        <Text style={{ fontWeight: "bold", fontSize: 24, color: "#cc63c7" }}>
           New Matches
         </Text>
         <View style={styles.dogs}>
           {dogs.map((dog) => {
             <View style={styles.dog}>
-              <Image source={{ uri: dog.image }} style={styles.image} />
+              <Image source={dog.image} style={styles.image} />
             </View>;
           })}
         </View>
@@ -40,6 +38,10 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     margin: 10,
+    borderWidth: 2,
+    borderColor: "#cc63c7",
+    borderRadius: 50,
+    padding: 3,
   },
   image: {
     width: "100%",
