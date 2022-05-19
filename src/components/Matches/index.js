@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
-import dogs from "../.././assets/data/dogs";
+import dogs from "../../../assets/data/dogs";
 
 const Matches = () => {
   return (
