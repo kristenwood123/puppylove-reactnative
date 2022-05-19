@@ -24,21 +24,21 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <View style={styles.pageContainer}>
-        <Stack.Navigator>
-          {/*<Stack.Screen name="matches" component={MatchesScreen} />*/}
-          <Stack.Screen name="Puppy Love" component={Home} />
-          <Stack.Screen name="Explore">
-            {(props) => (
-              <AnimatedStack
-                {...props}
-                data={dogs}
-                renderItem={({ item }) => <Card dog={item} />}
-              />
-            )}
-          </Stack.Screen>
-        </Stack.Navigator>
-      </View>
+      {/*<View style={styles.pageContainer}>*/}
+      <Stack.Navigator>
+        {/*<Stack.Screen name="matches" component={MatchesScreen} />*/}
+        <Stack.Screen name="Puppy Love" component={Home} />
+        <Stack.Screen name="Explore">
+          {(props) => (
+            <AnimatedStack
+              {...props}
+              data={dogs}
+              renderItem={({ item }) => <Card dog={item} />}
+            />
+          )}
+        </Stack.Screen>
+      </Stack.Navigator>
+      {/*</View>*/}
     </NavigationContainer>
   );
 };

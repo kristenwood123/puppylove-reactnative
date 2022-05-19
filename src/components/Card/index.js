@@ -3,7 +3,6 @@ import { Text, Image, View, StyleSheet } from "react-native";
 
 const Card = (props) => {
   const { name, breed, image } = props.dog;
-  console.log("asdasd", props.image);
   return (
     <View style={styles.card}>
       <Image source={image} style={styles.image} />
@@ -19,7 +18,7 @@ const styles = StyleSheet.create({
     height: "85%",
     borderRadius: 10,
     shadowColor: "#000",
-    backgroundColor: "pink",
+    backgroundColor: "#fefefe",
     shadowOffset: {
       width: 0,
       height: 5,
