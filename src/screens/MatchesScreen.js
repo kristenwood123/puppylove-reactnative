@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
-import dogs from "../../../assets/data/dogs";
+import dogs from "./../../assets/data/dogs";
 
-const Matches = () => {
+const MatchesScreen = () => {
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.container}>
@@ -12,10 +12,12 @@ const Matches = () => {
         <View style={styles.dogs}>
           {dogs.map((dog) => {
             const { image } = dog;
-            <View style={styles.dog}>
-              <Image source={image} style={styles.image} />
-              <Text>{dog.name}</Text>
-            </View>;
+            return (
+              <View style={styles.dog}>
+                <Image source={image} style={styles.image} />
+                <Text>{dog.name}</Text>
+              </View>
+            );
           })}
         </View>
       </View>
@@ -35,7 +37,6 @@ const styles = StyleSheet.create({
   dogs: {
     flexDirection: "row",
     flexWrap: "wrap",
-    backgroundColor: "green",
   },
   dog: {
     width: 150,
@@ -52,4 +53,4 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
 });
-export default Matches;
+export default MatchesScreen;

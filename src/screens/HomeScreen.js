@@ -7,7 +7,7 @@ import dogs from "../../assets/data/dogs";
 import AnimatedStack from "../components/AnimatedStack.js";
 import Card from "../components/Card";
 import Home from "../components/Home";
-import Matches from "../components/Matches";
+import MatchesScreen from "./MatchesScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +23,7 @@ const HomeScreen = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Puppy Love" component={Home} />
-      <Stack.Screen name="Matches" component={Matches} />
+      <Stack.Screen name="Matches" component={MatchesScreen} />
       <Stack.Screen name="Explore">
         {(props) => (
           <AnimatedStack

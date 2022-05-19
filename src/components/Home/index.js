@@ -62,12 +62,12 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 50,
     backgroundColor: "white",
+    margin: 5,
   },
   loginButton: {
     color: "#000",
     backgroundColor: "white",
     padding: 5,
     textTransform: "uppercase",
-    margin: 5,
   },
 });
