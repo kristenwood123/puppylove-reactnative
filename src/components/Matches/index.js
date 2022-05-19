@@ -3,24 +3,23 @@ import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
 import dogs from "../.././assets/data/dogs";
 
 const Matches = () => {
-  console.log(dogs);
   return (
-    // <SafeAreaView style={styles.root}>
-    <View style={styles.container}>
-      <Text style={{ fontWeight: "bold", fontSize: 24, color: "#cc63c7" }}>
-        New Matches
-      </Text>
-      <View style={styles.dogs}>
-        {dogs.map((dog) => {
-          const { image } = dog;
-          <View style={styles.dog}>
-            <Image source={image} style={styles.image} />
-            <Text>{dog.name}</Text>
-          </View>;
-        })}
+    <SafeAreaView style={styles.root}>
+      <View style={styles.container}>
+        <Text style={{ fontWeight: "bold", fontSize: 24, color: "#cc63c7" }}>
+          New Matches
+        </Text>
+        <View style={styles.dogs}>
+          {dogs.map((dog) => {
+            const { image } = dog;
+            <View style={styles.dog}>
+              <Image source={image} style={styles.image} />
+              <Text>{dog.name}</Text>
+            </View>;
+          })}
+        </View>
       </View>
-    </View>
-    // </SafeAreaView>
+    </SafeAreaView>
   );
 };
 
