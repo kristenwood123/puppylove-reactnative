@@ -2,22 +2,25 @@ import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
 import dogs from "../.././assets/data/dogs";
 
-const MatchesScreen = () => {
+const Matches = () => {
+  console.log(dogs);
   return (
-    <SafeAreaView style={styles.root}>
-      <View style={styles.container}>
-        <Text style={{ fontWeight: "bold", fontSize: 24, color: "#cc63c7" }}>
-          New Matches
-        </Text>
-        <View style={styles.dogs}>
-          {dogs.map((dog) => {
-            <View style={styles.dog}>
-              <Image source={dog.image} style={styles.image} />
-            </View>;
-          })}
-        </View>
+    // <SafeAreaView style={styles.root}>
+    <View style={styles.container}>
+      <Text style={{ fontWeight: "bold", fontSize: 24, color: "#cc63c7" }}>
+        New Matches
+      </Text>
+      <View style={styles.dogs}>
+        {dogs.map((dog) => {
+          const { image } = dog;
+          <View style={styles.dog}>
+            <Image source={image} style={styles.image} />
+            <Text>{dog.name}</Text>
+          </View>;
+        })}
       </View>
-    </SafeAreaView>
+    </View>
+    // </SafeAreaView>
   );
 };
 
@@ -33,6 +36,7 @@ const styles = StyleSheet.create({
   dogs: {
     flexDirection: "row",
     flexWrap: "wrap",
+    backgroundColor: "green",
   },
   dog: {
     width: 150,
@@ -49,4 +53,4 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
 });
-export default MatchesScreen;
+export default Matches;

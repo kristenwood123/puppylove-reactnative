@@ -3,6 +3,7 @@ import { Text, Image, View, StyleSheet } from "react-native";
 
 const Card = (props) => {
   const { name, breed, image } = props.dog;
+
   return (
     <View style={styles.card}>
       <Image source={image} style={styles.image} />
