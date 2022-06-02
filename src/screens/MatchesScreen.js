@@ -11,11 +11,10 @@ const MatchesScreen = () => {
         </Text>
         <View style={styles.dogs}>
           {dogs.map((dog) => {
-            const { image } = dog;
+            const { image, id } = dog;
             return (
-              <View style={styles.dog}>
+              <View style={styles.dog} key={id}>
                 <Image source={image} style={styles.image} />
-                <Text>{dog.name}</Text>
               </View>
             );
           })}
@@ -39,8 +38,8 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   dog: {
-    width: 150,
-    height: 150,
+    width: 100,
+    height: 100,
     margin: 10,
     borderWidth: 2,
     borderColor: "#cc63c7",

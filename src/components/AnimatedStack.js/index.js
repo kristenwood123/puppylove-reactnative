@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
-import { Icon } from "react-native-elements";
 import "react-native-gesture-handler";
 import Animated, {
   useAnimatedStyle,
@@ -86,7 +85,7 @@ const AnimatedStack = (props) => {
       },
     ],
   }));
-  // End Card Styles
+  // End Card Styles 
 
   const gestureHandler = useAnimatedGestureHandler({
     onStart: (_, context) => {
@@ -102,7 +101,7 @@ const AnimatedStack = (props) => {
       }
       translateX.value = withSpring(
         hiddenTranslateX * Math.sign(event.velocityX),
-        {},
+        {}, 
         () => runOnJS(setCurrentIndex)(currentIndex + 1)
       );
 
