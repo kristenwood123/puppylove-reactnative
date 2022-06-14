@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import "react-native-gesture-handler";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -11,19 +11,22 @@ import MatchesScreen from "./MatchesScreen";
 
 const Stack = createNativeStackNavigator();
 
-const HomeScreen = () => {
+const HomeScreen = ({}) => {
+  const [matches, setMatches] = useState([]);
   const onSwipeLeft = (dog) => {
     console.warn("swipe left", dog.name);
   };
 
   const onSwipeRight = (dog) => {
-    console.warn("swipe right", dog.name);
+    setMatches(dog);
   };
 
   return (
     <Stack.Navigator>
       <Stack.Screen name="Puppy Love" component={Home} />
-      <Stack.Screen name="Matches" component={MatchesScreen} />
+      <Stack.Screen name="Matches">
+        {() => <MatchesScreen matches={matches} />}
+      </Stack.Screen>
       <Stack.Screen name="Explore">
         {(props) => (
           <AnimatedStack

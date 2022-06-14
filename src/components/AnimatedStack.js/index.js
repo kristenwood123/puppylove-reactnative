@@ -85,7 +85,7 @@ const AnimatedStack = (props) => {
       },
     ],
   }));
-  // End Card Styles 
+  // End Card Styles
 
   const gestureHandler = useAnimatedGestureHandler({
     onStart: (_, context) => {
@@ -101,7 +101,7 @@ const AnimatedStack = (props) => {
       }
       translateX.value = withSpring(
         hiddenTranslateX * Math.sign(event.velocityX),
-        {}, 
+        {},
         () => runOnJS(setCurrentIndex)(currentIndex + 1)
       );
 

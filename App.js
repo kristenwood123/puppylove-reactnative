@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./src/screens/HomeScreen";
-import MatchesScreen from "./src/screens/MatchesScreen";
 
 const App = () => {
   return (
