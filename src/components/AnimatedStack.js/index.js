@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import "react-native-gesture-handler";
+import Tabs from "../Tabs";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
   },
   animatedCard: {
     width: "100%",
-    height: "70%",
+    height: "60%",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -170,6 +171,19 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 220,
     zIndex: 10,
+  },
+  loginButtonContainer: {
+    borderRadius: 25,
+    paddingVertical: 10,
+    paddingHorizontal: 50,
+    backgroundColor: "white",
+    margin: 5,
+  },
+  loginButton: {
+    color: "#000",
+    backgroundColor: "white",
+    padding: 5,
+    textTransform: "uppercase",
   },
 });
 

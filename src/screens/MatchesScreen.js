@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
+import dogs from "../../assets/data/dogs";
 
-const MatchesScreen = ({ matches }) => {
-  console.log(matches);
+const MatchesScreen = () => {
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.container}>
@@ -10,7 +10,7 @@ const MatchesScreen = ({ matches }) => {
           New Matches
         </Text>
         <View style={styles.dogs}>
-          {matches.map((dog) => {
+          {dogs.map((dog) => {
             const { image, id } = dog;
             return (
               <View style={styles.dog} key={id}>

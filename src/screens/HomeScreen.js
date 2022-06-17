@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import "react-native-gesture-handler";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+
 // Data
 import dogs from "../../assets/data/dogs";
 import AnimatedStack from "../components/AnimatedStack.js";
 import Card from "../components/Card";
 import Home from "../components/Home";
-import MatchesScreen from "./MatchesScreen";
+import { NavigationContainer } from "@react-navigation/native";
 
-const Stack = createNativeStackNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 const HomeScreen = ({}) => {
   const [matches, setMatches] = useState([]);
+
   const onSwipeLeft = (dog) => {
-    console.warn("swipe left", dog.name);
+    console.log("swipe left", dog.name);
   };
 
   const onSwipeRight = (dog) => {
@@ -22,12 +25,13 @@ const HomeScreen = ({}) => {
   };
 
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Puppy Love" component={Home} />
-      <Stack.Screen name="Matches">
-        {() => <MatchesScreen matches={matches} />}
-      </Stack.Screen>
-      <Stack.Screen name="Explore">
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Puppy Love"
+        component={Home}
+        options={{ title: "Home" }}
+      />
+      <Tab.Screen name="Explore">
         {(props) => (
           <AnimatedStack
             {...props}
@@ -37,8 +41,8 @@ const HomeScreen = ({}) => {
             renderItem={({ item }) => <Card dog={item} />}
           />
         )}
-      </Stack.Screen>
-    </Stack.Navigator>
+      </Tab.Screen>
+    </Tab.Navigator>
   );
 };
 
