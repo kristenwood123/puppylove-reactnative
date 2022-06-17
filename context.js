@@ -32,19 +32,24 @@ const AppProvider = ({ children }) => {
     console.log("swipe left", dog.name);
   };
 
-  const saveMatches = () => {
-    if (matches) {
-      AsyncStorage.setItem("key", matches);
-      console.log("new match saved");
-    } else {
-      console.log("not a match");
+  const saveMatches = async (key, value) => {
+    try {
+      await AsyncStorage.setItem("key", "saved");
+    } catch (error) {
+      console.log("error");
     }
   };
-  const onSwipeRight = async (dog) => {
-    await AsyncStorage.getItem("key").then((dog) => {
-      setMatches(dog);
-      console.log("new matches", matches);
-    });
+
+  const onSwipeRight = async (key) => {
+    try {
+      const value = await AsyncStorage.getItem("key");
+      console.log(value);
+      if (value !== null) {
+        return setMatches(value);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
