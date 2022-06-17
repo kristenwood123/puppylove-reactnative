@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import "react-native-gesture-handler";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 // Data
@@ -9,21 +9,13 @@ import dogs from "../../assets/data/dogs";
 import AnimatedStack from "../components/AnimatedStack.js";
 import Card from "../components/Card";
 import Home from "../components/Home";
-import { NavigationContainer } from "@react-navigation/native";
+import MatchesScreen from "./MatchesScreen";
+import { useGlobalContext } from "../../context";
 
 const Tab = createMaterialBottomTabNavigator();
 
-const HomeScreen = ({}) => {
-  const [matches, setMatches] = useState([]);
-
-  const onSwipeLeft = (dog) => {
-    console.log("swipe left", dog.name);
-  };
-
-  const onSwipeRight = (dog) => {
-    setMatches(dog);
-  };
-
+const HomeScreen = () => {
+  const { onSwipeLeft, onSwipeRight } = useGlobalContext();
   return (
     <Tab.Navigator>
       <Tab.Screen
@@ -42,6 +34,11 @@ const HomeScreen = ({}) => {
           />
         )}
       </Tab.Screen>
+      <Tab.Screen
+        name="Matches"
+        options={{ title: "Matches" }}
+        component={MatchesScreen}
+      />
     </Tab.Navigator>
   );
 };

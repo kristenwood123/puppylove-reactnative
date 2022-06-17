@@ -1,8 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
 import dogs from "../../assets/data/dogs";
+import { useGlobalContext } from "../../context";
 
 const MatchesScreen = () => {
+  const { matches } = useGlobalContext();
+  console.log(matches);
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.container}>
@@ -10,7 +13,7 @@ const MatchesScreen = () => {
           New Matches
         </Text>
         <View style={styles.dogs}>
-          {dogs.map((dog) => {
+          {matches.map((dog) => {
             const { image, id } = dog;
             return (
               <View style={styles.dog} key={id}>

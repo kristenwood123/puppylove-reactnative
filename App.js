@@ -2,12 +2,15 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./src/screens/HomeScreen";
+import { AppProvider } from "./context";
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <HomeScreen />
-    </NavigationContainer>
+    <AppProvider>
+      <NavigationContainer>
+        <HomeScreen />
+      </NavigationContainer>
+    </AppProvider>
   );
 };
 
